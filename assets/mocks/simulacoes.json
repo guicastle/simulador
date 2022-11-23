@@ -1,0 +1,68 @@
+{
+	"BMG": [
+		{
+			"taxa": 2.05,
+			"parcelas": 72,
+			"valor_parcela": 130.2,
+			"convenio": "INSS"
+		},
+		{
+			"taxa": 2.05,
+			"parcelas": 60,
+			"valor_parcela": 150.75,
+			"convenio": "INSS"
+		},
+		{
+			"taxa": 2.05,
+			"parcelas": 48,
+			"valor_parcela": 176.45,
+			"convenio": "INSS"
+		},
+		{
+			"taxa": 2.05,
+			"parcelas": 36,
+			"valor_parcela": 235.95,
+			"convenio": "INSS"
+		},
+		{
+			"taxa": 1.9,
+			"parcelas": 84,
+			"valor_parcela": 121.92,
+			"convenio": "INSS"
+		}
+	],
+	"PAN": [
+		{
+			"taxa": 2.05,
+			"parcelas": 48,
+			"valor_parcela": 171.45,
+			"convenio": "INSS"
+		},
+		{
+			"taxa": 2.08,
+			"parcelas": 72,
+			"valor_parcela": 142.15,
+			"convenio": "INSS"
+		},
+		{
+			"taxa": 2.1,
+			"parcelas": 36,
+			"valor_parcela": 156.25,
+			"convenio": "FEDERAL"
+		}
+	],
+	"OLE": [
+		{
+			"taxa": 2.05,
+			"parcelas": 60,
+			"valor_parcela": 151.75,
+			"convenio": "INSS"
+		},
+		{
+			"taxa": 2.08,
+			"parcelas": 72,
+			"valor_parcela": 142.15,
+			"convenio": "INSS"
+		}
+	]
+}

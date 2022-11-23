@@ -1,0 +1,51 @@
+name: teste_flutter
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.4 <3.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Backend
+  get: ^4.6.5
+  intl: ^0.17.0
+  http: ^0.13.5
+
+  # UI Design
+  cupertino_icons: ^1.0.2
+  fluentui_icons: ^1.0.0
+  material_design_icons_flutter: ^6.0.7096
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+  
+  assets:
+    - assets/mocks/
+    - assets/images/
+    
+
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
