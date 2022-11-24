@@ -6,11 +6,11 @@ import 'package:teste_flutter/models/instituicao.dart';
 import 'package:teste_flutter/ui/controllers/convenios_controller.dart';
 import 'package:teste_flutter/ui/controllers/instituicao_controller.dart';
 import 'package:teste_flutter/ui/controllers/simulacao_controller.dart';
-import 'package:teste_flutter/ui/pages/components/simulacao_component.dart';
+import 'package:teste_flutter/ui/pages/home/components/simulacao_component.dart';
 import 'package:teste_flutter/ui/values/colors.dart';
 import 'package:teste_flutter/ui/values/currency_formatter.dart';
 
-import '../../models/simulacao.dart';
+import '../../../models/simulacao.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,16 +22,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Simulacao? simulacoes;
   List<Instituicao>? listInstitucoes;
-  List<Convenio>? listConvenio;
+  List<Convenio>? listConvenio = [];
   List<Banco> listBancos = [];
 
   var isLoading = false;
 
   final _controllerValor = TextEditingController();
   List<String> parcelas = <String>['36', '48', '60', '72', '84'];
-  String? selectedParcela;
-  String? selectedInstituicao;
-  String? selectedConvenio;
+  String selectedParcela = "0";
+  String selectedInstituicao = "";
+  String selectedConvenio = "";
 
   final _formKey = GlobalKey<FormState>();
 
@@ -44,6 +44,7 @@ class _HomePageState extends State<HomePage> {
   getData() async {
     listInstitucoes = await InstituicaoController().getInstituicoesMock();
     listConvenio = await ConvenioController().getConveniosMock();
+    setState(() {});
   }
 
   @override
@@ -144,7 +145,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _qtdInstituicao() {
-    return DropdownButtonFormField(
+    return DropdownButtonFormField<Instituicao>(
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
         labelText: 'Instituições',
@@ -158,7 +159,7 @@ class _HomePageState extends State<HomePage> {
       }).toList(),
       onChanged: (value) {
         setState(() {
-          selectedInstituicao = value.toString();
+          selectedInstituicao = value!.chave.toString();
         });
       },
     );
@@ -178,14 +179,16 @@ class _HomePageState extends State<HomePage> {
       }).toList(),
       onChanged: (value) {
         setState(() {
-          selectedConvenio = value.toString();
+          selectedConvenio = value!.chave.toString();
         });
       },
     );
   }
 
   _btnSimular() {
-    return Center(
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.1,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: ElevatedButton(
@@ -194,7 +197,20 @@ class _HomePageState extends State<HomePage> {
           ),
           onPressed: () async {
             if (_formKey.currentState!.validate()) {
+              Map<String, dynamic> json = {
+                "valor_emprestimo": double.parse(_controllerValor.text
+                    .replaceAll('R\$', '')
+                    .replaceAll('.', '')
+                    .replaceAll(',', '.')
+                    .trim()),
+                "instituicoes":
+                    selectedInstituicao == "" ? [] : [selectedInstituicao],
+                "convenios": selectedConvenio == "" ? [] : [selectedConvenio],
+                "parcelas": int.parse(selectedParcela)
+              };
+
               // Lista retorno da API
+              simulacoes = await SimulacaoController().getSimulacoes(json);
 
               // Simular MOCK
               simulacoes = await SimulacaoController().getSimulacaoMock();
@@ -223,7 +239,13 @@ class _HomePageState extends State<HomePage> {
               }
             }
           },
-          child: const Text('SIMULAR'),
+          child: const Text(
+            'SIMULAR',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
     );

@@ -4,13 +4,18 @@ import 'package:teste_flutter/models/convenio.dart';
 
 class ConvenioController {
   Future<List<Convenio>?> getConvenios() async {
-    var client = http.Client();
+    try {
+      var client = http.Client();
 
-    var uri = Uri.parse('http://127.0.0.1:8000/api/convenio');
-    var response = await client.get(uri);
-    if (response.statusCode == 200) {
-      var json = response.body;
-      return convenioFromJson(json);
+      var uri = Uri.parse('http://127.0.0.1:8000/api/convenio');
+      var response = await client.get(uri);
+      if (response.statusCode == 200) {
+        var json = response.body;
+        return convenioFromJson(json);
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
     }
   }
 

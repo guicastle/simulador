@@ -4,13 +4,18 @@ import 'package:http/http.dart' as http;
 
 class InstituicaoController {
   Future<List<Instituicao>?> getInstituicoes() async {
-    var client = http.Client();
+    try {
+      var client = http.Client();
 
-    var uri = Uri.parse('http://127.0.0.1:8000/api/instituicao');
-    var response = await client.get(uri);
-    if (response.statusCode == 200) {
-      var json = response.body;
-      return instituicaoFromJson(json);
+      var uri = Uri.parse('http://127.0.0.1:8000/api/instituicao');
+      var response = await client.get(uri);
+      if (response.statusCode == 200) {
+        var json = response.body;
+        return instituicaoFromJson(json);
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
     }
   }
 
