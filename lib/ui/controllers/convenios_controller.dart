@@ -23,9 +23,9 @@ class ConvenioController {
     try {
       String response =
           await rootBundle.loadString('assets/mocks/convenios.json');
-      print(response);
       return convenioFromJson(response);
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }

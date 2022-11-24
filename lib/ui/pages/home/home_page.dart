@@ -42,8 +42,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   getData() async {
-    listInstitucoes = await InstituicaoController().getInstituicoesMock();
-    listConvenio = await ConvenioController().getConveniosMock();
+    listInstitucoes = await InstituicaoController().getInstituicoes();
+    // listInstitucoes = await InstituicaoController().getInstituicoesMock();
+
+    listConvenio = await ConvenioController().getConvenios();
+    // listConvenio = await ConvenioController().getConveniosMock();
     setState(() {});
   }
 
@@ -213,7 +216,7 @@ class _HomePageState extends State<HomePage> {
               simulacoes = await SimulacaoController().getSimulacoes(json);
 
               // Simular MOCK
-              simulacoes = await SimulacaoController().getSimulacaoMock();
+              //simulacoes = await SimulacaoController().getSimulacaoMock();
 
               // Identifica e salva campo auxiliar para assets, interessante que essa imagem seja direto da API
               simulacoes?.bmg?.forEach((element) {

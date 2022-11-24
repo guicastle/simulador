@@ -14,7 +14,6 @@ dependencies:
     sdk: flutter
 
   # Backend
-  get: ^4.6.5
   intl: ^0.17.0
   http: ^0.13.5
 

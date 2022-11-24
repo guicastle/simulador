@@ -1,27 +1,25 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:teste_flutter/models/convenio.dart';
 import 'package:teste_flutter/models/simulacao.dart';
 
 class SimulacaoController {
   // Metodo POST com parametros
   Future<Simulacao?> getSimulacoes(body) async {
     try {
-      var client = http.Client();
-
       var uri = Uri.parse('http://localhost:8000/api/simular');
-      final headers = {
-        "Accept": "application/json",
-        "Access-Control_Allow_Origin": "*"
-      };
       String jsonBody = json.encode(body);
 
-      var response = await client.post(
+      var response = await http.post(
         uri,
-        headers: headers,
+        headers: {
+          "Content-type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers":
+              "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+          "Access-Control-Allow-Methods": "POST, OPTIONS"
+        },
         body: jsonBody,
       );
       if (response.statusCode == 200) {
@@ -44,6 +42,4 @@ class SimulacaoController {
       print(e);
     }
   }
-
-  Future<Simulacao?> filtrarConvencio(List<Convenio> convenio) async {}
 }

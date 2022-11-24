@@ -23,9 +23,9 @@ class InstituicaoController {
     try {
       String response =
           await rootBundle.loadString('assets/mocks/instituicoes.json');
-      print(response);
       return instituicaoFromJson(response);
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }
