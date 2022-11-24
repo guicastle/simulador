@@ -1,16 +1,25 @@
 # Simulador de Emprestismo
 
-A new Flutter project.
+Um ótimo desafio muito bem elaborado!
+O controller php está na pasta API_PHP com todas as alterações
+Os arquivos mocks devem ser comentados e assim que você altera para sua url(localhost)
 
-## Getting Started
+## POSTMAN Example
+POST -> {"valor_emprestimo":1500,"instituicoes":[],"convenios":["FEDERAL"],"parcelas":0}
 
-This project is a starting point for a Flutter application.
+Response:
+{
+    "PAN": [
+        {
+            "taxa": 2.1,
+            "parcelas": 36,
+            "valor_parcela": 46.88,
+            "convenio": "FEDERAL"
+        }
+    ]
+}
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Muito Obrigado pela oportunidade!
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Qualquer dúvida estou a disposição :)

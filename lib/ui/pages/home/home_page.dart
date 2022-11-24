@@ -43,10 +43,15 @@ class _HomePageState extends State<HomePage> {
 
   getData() async {
     listInstitucoes = await InstituicaoController().getInstituicoes();
-    // listInstitucoes = await InstituicaoController().getInstituicoesMock();
+
+    /* Comentar linhas MOCK assim que trocar URL - DEVE SER REMOVIDO */
+    listInstitucoes = await InstituicaoController().getInstituicoesMock();
 
     listConvenio = await ConvenioController().getConvenios();
-    // listConvenio = await ConvenioController().getConveniosMock();
+
+    /* Comentar linhas MOCK assim que trocar URL - DEVE SER REMOVIDO */
+    listConvenio = await ConvenioController().getConveniosMock();
+
     setState(() {});
   }
 
@@ -215,10 +220,10 @@ class _HomePageState extends State<HomePage> {
               // Lista retorno da API
               simulacoes = await SimulacaoController().getSimulacoes(json);
 
-              // Simular MOCK
-              //simulacoes = await SimulacaoController().getSimulacaoMock();
+              /* Simular MOCK alterar sua URL- DEVE SER REMOVIDO */
+              simulacoes = await SimulacaoController().getSimulacaoMock();
 
-              // Identifica e salva campo auxiliar para assets, interessante que essa imagem seja direto da API
+              // Identifica e salva campo auxiliar para assets
               simulacoes?.bmg?.forEach((element) {
                 element.imgAssetBanco = 'assets/images/logo-banco-bmg.png';
                 element.chaveBanco = 'BMG';
